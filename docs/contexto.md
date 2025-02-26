@@ -53,17 +53,41 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+| ID      | Descrição do Requisito                                                            | Prioridade |
+|---------|----------------------------------------------------------------------------------|------------|
+| RF-001  | Permitir que o usuário realize seu cadastro                                     | ALTA       |
+| RF-002  | Permitir que o usuário edite seus dados cadastrais                              | ALTA       |
+| RF-003  | Permitir que o usuário exclua sua conta                                         | ALTA       |
+| RF-004  | Permitir que o administrador cadastre novos jogos no sistema                   | ALTA       |
+| RF-005  | Permitir que o administrador edite os dados dos jogos cadastrados              | ALTA       |
+| RF-006  | Permitir que o administrador exclua jogos do catálogo                          | ALTA       |
+| RF-007  | Permitir que o usuário visualize a lista de jogos disponíveis                  | ALTA       |
+| RF-008  | Permitir que o usuário realize reservas de jogos disponíveis                   | ALTA       |
+| RF-009  | Permitir que o usuário cancele suas reservas                                   | ALTA       |
+| RF-010  | Impedir que um jogo já reservado seja alugado por outro usuário               | ALTA       |
+| RF-011  | Notificar o usuário sobre o status de sua reserva (confirmação, cancelamento) | MÉDIA      |
+| RF-012  | Permitir que o administrador visualize todas as reservas realizadas           | MÉDIA      |
+| RF-013  | Permitir que o usuário filtre os jogos por categoria, console ou ano         | MÉDIA      |
+| RF-014  | Permitir que o administrador gere relatórios de reservas realizadas           | MÉDIA      |
+| RF-015  | Enviar lembretes automáticos sobre a data de devolução dos jogos              | BAIXA      |
+| RF-016  | Permitir que o usuário consiga prorrogar apenas uma vez sua entrega          | BAIXA      |
+| RF-017  | Ao reservar um jogo pelo sistema, o jogo fica reservado temporariamente por 24h | ALTA       |
+| RF-018  | Se a reserva não for aprovada pelo administrador em até 24h, será cancelada   | ALTA       |
+| RF-019  | A reserva deve ser completada fisicamente na loja e aprovada pelo administrador | ALTA       |
+| RF-020  | Após a reserva, o usuário tem até X dias para usufruir da locação. Após isso, será enviado um e-mail de alerta | MÉDIA |
+
 
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+Código	Descrição	Prioridade
+|RNF-001|	As páginas devem carregar em no máximo 6 segundos em condições normais de rede.	|MÉDIA|
+|RNF-002|	O banco de dados deve ser capaz de armazenar e recuperar informações de pelo menos X jogos sem degradação de performance.	|ALTA|
+|RNF-003|	O sistema deve utilizar autenticação segura com senha criptografada.	|ALTA|
+|RNF-005|	As informações dos usuários devem ser armazenadas.	|ALTA|
+|RNF-006|	O sistema deve bloquear a conta do usuário após 5 tentativas consecutivas de login mal-sucedidas.	|MÉDIA|
+|RNF-007|	A interface deve ser responsiva e acessível em dispositivos móveis e desktops.	|ALTA|
+|RNF-008|	O sistema deve ser intuitivo e de fácil uso, proporcionando uma experiência fluida para todos os usuários. Garantindo compatibilidade com leitores de tela e contrastes adequados.	|MÉDIA|
+|RNF-010|	O sistema deve ser compatível com os navegadores mais populares (Chrome, Firefox, Edge, Safari).	|ALTA|
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
@@ -84,10 +108,14 @@ todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|ID| Restrição                                                                                               |
+|--|---------------------------------------------------------------------------------------------------------|
+|01| O sistema deve estar disponível 24 horas por dia                                                        |
+|02| O sistema deve permitir no máximo 3 tentativas de login antes de bloquear o usuário por 5 minutos       |
+|03| O sistema deve permitir que um usuário compre no máximo 5 unidades do mesmo jogo por pedido             |
+|04| Apenas usuários cadastrados podem deixar avaliações nos produtos                                        |
+|05| O sistema deve permitir diferentes métodos de pagamento, incluindo cartão de crédito e boleto           |
+|06| O site deve ter um layout compatível com celulares e tablets                                            |
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
@@ -99,6 +127,16 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 Descreva aqui todos os serviços que serão disponibilizados pelo seu projeto, detalhando suas características e funcionalidades.
 
+|ID|	Serviço	Descrição                                                                                    |
+|--|------------------------------------------------------------------------------------------------------|
+|Catálogo de Jogos|	Permite aos clientes visualizar e pesquisar jogos disponíveis para compra.            |
+|Carrinho de Compras|	Permite adicionar, remover e modificar itens antes da finalização da compra.        |
+|Processamento de Pagamento|	Garante pagamentos seguros via cartão de crédito, boleto e PIX.              |
+|Gestão de Pedidos|	Registra e acompanha pedidos, permitindo ao usuário visualizar o status da compra.    |
+|Avaliação de Produtos|	Usuários cadastrados podem deixar avaliações e comentários nos jogos.             |
+|Controle de Estoque|	Atualiza automaticamente a quantidade de produtos disponíveis após cada compra.     |
+|Suporte ao Cliente|	Canal de atendimento para dúvidas, trocas e devoluções.                              |
+
 # Arquitetura da Solução
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
@@ -107,6 +145,27 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 
 ## Tecnologias Utilizadas
+
+# Tecnologias Utilizadas  
+
+Essas são as tecnologias utilizadas para o desenvolvimento de nosso sistema de aluguel de jogos, **Nintendin**:  
+
+## Frontend  
+O desenvolvimento da interface do usuário será feito com:  
+- **React**: Para a aplicação web, garantindo uma experiência interativa e responsiva.  
+- **React Native + Expo**: Para o desenvolvimento do aplicativo mobile.  
+- **JavaScript**: Como linguagem principal para o frontend.  
+
+## APIs  
+- **Axios**: Biblioteca para realizar requisições HTTP de maneira simplificada, permitindo chamadas à API do backend.  
+- **REST API**: O backend será estruturado para expor endpoints RESTful.  
+
+## Backend  
+- **Node.js + Express**: Para o desenvolvimento da API backend.  
+- **PostgreSQL**: Utilizado como banco de dados relacional.  
+
+## IDE e Ferramentas de Desenvolvimento  
+- **Visual Studio Code (VSCode)** será a principal IDE utilizada no desenvolvimento, devido à sua versatilidade e ampla compatibilidade com extensões.  
 
 Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
 
